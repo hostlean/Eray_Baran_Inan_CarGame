@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -15,16 +16,17 @@ public class InputManager : MonoBehaviour
    {
       get
       {
-         if(_instance == null)
-            Debug.LogError("Input Manager is Null");
+         if (_instance == null)
+         {
+            Debug.LogError("Input Manager is null");
+            //var go = new GameObject("Input Manager").AddComponent<InputManager>();
+         }
          return _instance;
       }
    }
 
    #endregion
 
-   private Camera _camera;
-   
    public Action<Vector2, float> OnStartTouch;
    public Action<Vector2, float> OnEndTouch;
 
@@ -34,7 +36,6 @@ public class InputManager : MonoBehaviour
    {
       _instance = this;
       _inputMaps = new InputMaps();
-      _camera = Camera.main;
    }
 
    private void OnEnable()
@@ -60,5 +61,6 @@ public class InputManager : MonoBehaviour
 
    public void EndTouch(InputAction.CallbackContext context)
    {
-      OnEndTouch?.Invoke(Vector2.zero, (float) context.time); }
+      OnEndTouch?.Invoke(Vector2.zero, (float) context.time); 
+   }
 }

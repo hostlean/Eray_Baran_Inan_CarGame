@@ -55,12 +55,15 @@ public class CarManager : MonoBehaviour
 
     public void DestroyActiveCar()
     {
+        RotationHolder rh =  _activeCar.GetComponent<RotationHolder>();
+        rh.UnsubscribeMethods();
+        _activeCar.SetActive(false);
         Destroy(_activeCar);
     }
 
-    public void AddCarAsPreviousCar(GameObject go)
+    public void AddCarAsPreviousCar()
     {
-        cars.Add(go);
+        cars.Add(_activeCar);
     }
 
     public void ResetCars()
@@ -76,6 +79,8 @@ public class CarManager : MonoBehaviour
     {
         if (cars.Count > 0)
         {
+            if (previousCarCount > 7)
+                previousCarCount = 7;
             var difference = cars.Count - previousCarCount;
             var startIndex = difference > 0 ? difference : 0;
 
@@ -83,7 +88,6 @@ public class CarManager : MonoBehaviour
             {
                 cars[i].SetActive(true);
             }
-            WaypointManager.Instance.IncreaseWaypointIndex();
         }
       
     }

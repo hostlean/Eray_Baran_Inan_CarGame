@@ -53,4 +53,12 @@ public class RotationHolder : MonoBehaviour
             CarManager.Instance.DestroyActiveCar();
         }
     }
+
+    public void UnsubscribeMethods()
+    {
+        if (movement.IsActiveVehicle)
+            _gameManager.OnMoveCars -= AddRotationsToList;
+        else
+            _gameManager.OnMoveCars -= RotateVehicleByList;
+    }
 }

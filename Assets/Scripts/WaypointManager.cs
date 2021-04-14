@@ -50,7 +50,7 @@ public class WaypointManager : MonoBehaviour
         _index += 1;
 
         if (_index == endPoints.Length)
-            SceneLoader.Instance.LoadSameScene();
+            SceneLoader.Instance.LoadLevelSelection();
         _index %= startPoints.Length;
     }
     

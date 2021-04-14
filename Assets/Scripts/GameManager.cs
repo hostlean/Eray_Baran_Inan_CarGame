@@ -39,11 +39,19 @@ public class GameManager : MonoBehaviour
 
    public void StartSameSequence()
    {
+      MoveCars = false;
+      CarManager.Instance.DestroyActiveCar();
+      CarManager.Instance.ResetCars();
+      CarManager.Instance.CreateNewCar();
       
    }
 
    public void StartNextSequence()
    {
-      
+      MoveCars = false;
+      CarManager.Instance.AddCarAsPreviousCar();
+      CarManager.Instance.ResetCars();
+      WaypointManager.Instance.IncreaseWaypointIndex();
+      CarManager.Instance.CreateNewCar();
    }
 }

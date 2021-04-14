@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour
         if (IsActiveVehicle)
             _gameManager.OnMoveCars -= RotateVehicle;
         IsActiveVehicle = false;
+        gameObject.tag = "Car";
     }
 
 

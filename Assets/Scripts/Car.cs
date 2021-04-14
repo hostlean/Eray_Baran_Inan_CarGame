@@ -18,19 +18,16 @@ public class Car : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other == movement.EndPoint.GetComponent<Collider>())
+        if (other.gameObject == movement.EndPoint)
         {
-            CarManager carManager = CarManager.Instance;
-            GameManager.Instance.MoveCars = false;
             movement.EndPoint.SetActive(false);
-            carManager.AddCarAsPreviousCar(gameObject);
-            carManager.ResetCars();
-            carManager.CreateNewCar();
+            GameManager.Instance.StartNextSequence();
+        }
+        if(movement.IsActiveVehicle && (other.gameObject.CompareTag("Block") || other.gameObject.CompareTag("Car")))
+        {
+            GameManager.Instance.StartSameSequence();
         }
 
-        if (other)
-        {
-            //CarManager.Instance.DestroyActiveCar();
-        }
+       
     }
 }

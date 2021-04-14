@@ -21,7 +21,11 @@ public class SceneLoader : MonoBehaviour
     
     private void Awake()
     {
-        _instance = this;
+        if(_instance != null)
+            Destroy(gameObject);
+        else
+            _instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadLevelSelection()
@@ -49,25 +53,5 @@ public class SceneLoader : MonoBehaviour
             SceneManager.LoadScene(activeSceneIndex + 1);
         else 
             LoadMainMenu();
-    }
-
-    public void LoadLevel1()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void LoadLevel2()
-    {
-        SceneManager.LoadScene(3);
-    }
-
-    public void LoadLevel3()
-    {
-        SceneManager.LoadScene(4);
-    }
-    
-    public void LoadLevel4()
-    {
-        SceneManager.LoadScene(5);
     }
 }
