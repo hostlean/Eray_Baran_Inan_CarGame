@@ -6,8 +6,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float turnSpeed;
+    private float _moveSpeed;
+    private float _turnSpeed;
     
     public Transform StartPoint { get; set; }
     public GameObject EndPoint { get; set; }
@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
         transform.position = StartPoint.position;
         transform.rotation = StartPoint.rotation;
         
-        moveSpeed = CarManager.Instance.CarMoveSpeed;
-        turnSpeed = CarManager.Instance.CarTurnSpeed;
+        _moveSpeed = CarManager.Instance.CarMoveSpeed;
+        _turnSpeed = CarManager.Instance.CarTurnSpeed;
         
         _gameManager.OnMoveCars += MoveForward;
 
@@ -49,7 +49,6 @@ public class Movement : MonoBehaviour
     {
         InputManager.Instance.OnStartTouch -= VehicleRotateInput;
         InputManager.Instance.OnEndTouch -= VehicleRotateInput;
-
 
         _gameManager.OnMoveCars -= MoveForward;
         if (IsActiveVehicle)
@@ -78,13 +77,13 @@ public class Movement : MonoBehaviour
     
     private void MoveForward()
     {
-        _moveForward = moveSpeed * Time.fixedDeltaTime;
+        _moveForward = _moveSpeed * Time.fixedDeltaTime;
         transform.Translate(Vector3.forward * _moveForward);
     }
 
     private void RotateVehicle()
     {
-        var rotation = new Vector3(0, turnSpeed * _turnInputValue * Time.fixedDeltaTime, 0);
+        var rotation = new Vector3(0, _turnSpeed * _turnInputValue * Time.fixedDeltaTime, 0);
         transform.Rotate(rotation);
     }
     

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+//using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
    #endregion
 
-   [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+   //[SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
    private void Awake()
    {
@@ -31,12 +31,12 @@ public class CameraManager : MonoBehaviour
 
    public void FollowCar(Transform car)
    {
-      _virtualCamera.Follow = car;
+      //_virtualCamera.Follow = car;
    }
 
    public void RemoveFollowedCar()
    {
-      _virtualCamera.Follow = null;
+      //_virtualCamera.Follow = null;
    }
    
 }

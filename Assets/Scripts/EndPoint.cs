@@ -10,6 +10,7 @@ public class EndPoint : MonoBehaviour
     private void Awake()
     {
         text.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

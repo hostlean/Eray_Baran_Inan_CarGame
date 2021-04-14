@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-[DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
 {
    #region Singleton

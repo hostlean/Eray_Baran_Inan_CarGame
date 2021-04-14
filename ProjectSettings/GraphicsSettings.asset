@@ -68,10 +68,10 @@ GraphicsSettings:
       standardShaderQuality: 1
       renderingPath: 1
       hdrMode: 2
-      realtimeGICPUUsage: 25
+      realtimeGICPUUsage: 50
       useReflectionProbeBoxProjection: 1
       useReflectionProbeBlending: 1
-      useHDR: 0
+      useHDR: 1
       useDetailNormalMap: 1
       useCascadedShadowMaps: 1
       prefer32BitShadowMaps: 0
