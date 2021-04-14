@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/projectSettingsUpdater.xml
+/modules.xml
+/.idea.Eray_Baran_Inan_CarGame.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../:\Users\erayb\Desktop\Repos\Unity Projects\Eray_Baran_Inan_CarGame\.idea\.idea.Eray_Baran_Inan_CarGame\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
