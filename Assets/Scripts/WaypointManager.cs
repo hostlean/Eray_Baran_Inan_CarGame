@@ -48,6 +48,9 @@ public class WaypointManager : MonoBehaviour
     public void IncreaseWaypointIndex()
     {
         _index += 1;
+
+        if (_index == endPoints.Length)
+            SceneLoader.Instance.LoadLevelSelection();
         _index %= startPoints.Length;
     }
     

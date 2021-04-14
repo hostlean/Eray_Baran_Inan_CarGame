@@ -75,17 +75,7 @@ public class Movement : MonoBehaviour
                 _turnInputValue = 1;
         }
     }
-
-    private void Update()
-    {
-       
-    }
-
-    private void FixedUpdate()
-    {
-        //_turnInputValue = Input.GetAxisRaw("Horizontal");
-    }
-
+    
     private void MoveForward()
     {
         _moveForward = moveSpeed * Time.fixedDeltaTime;

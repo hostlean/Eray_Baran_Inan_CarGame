@@ -31,17 +31,19 @@ public class GameManager : MonoBehaviour
       _instance = this;
    }
 
-   private void Update()
-   {
-      // if (Input.GetKeyDown(KeyCode.Space))
-      // {
-      //    MoveCars = true;
-      // }
-   }
-
    private void FixedUpdate()
    {
       if (MoveCars)
          OnMoveCars?.Invoke();
+   }
+
+   public void StartSameSequence()
+   {
+      
+   }
+
+   public void StartNextSequence()
+   {
+      
    }
 }
