@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class MusicManager : MonoBehaviour
 {
     #region Singleton
@@ -29,4 +30,12 @@ public class MusicManager : MonoBehaviour
             _instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    public AudioSource audioSource;
+
+    public void ChangeVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
 }

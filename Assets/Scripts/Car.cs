@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
         if (movement.IsActiveVehicle)
         {
             meshRenderer.material = purpleCar;
-            if(rotationHolder.OnTarget)
+            if (rotationHolder.OnTarget)
                 SetEndPointVisibility();
         }
     }
@@ -92,7 +92,4 @@ public class Car : MonoBehaviour
         movement.UnsubscribeMethods();
         rotationHolder.UnsubscribeMethods();
     }
-    
-    
-    
 }

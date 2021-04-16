@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[DefaultExecutionOrder( -1)]
 public class CarManager : MonoBehaviour
 {
 
@@ -29,6 +28,9 @@ public class CarManager : MonoBehaviour
     [SerializeField] private bool showOldTargets;
     [SerializeField] private bool waitForOldCars;
     [SerializeField] private RotationHolder carPrefab;
+
+    [SerializeField, Tooltip("Default Size is 5")]
+    private float carSize = 5;
 
     [SerializeField] private List<RotationHolder> cars = new List<RotationHolder>();
 
@@ -59,6 +61,7 @@ public class CarManager : MonoBehaviour
     public void CreateNewCar()
     {
         RotationHolder car = Instantiate(carPrefab, transform.position, Quaternion.identity, transform);
+        car.gameObject.transform.localScale = new Vector3(carSize, carSize, carSize);
         _activeCar = car;
     }
 

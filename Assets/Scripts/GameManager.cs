@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
    #region Singleton
@@ -22,7 +21,9 @@ public class GameManager : MonoBehaviour
    public delegate void MoveAllCars();
 
    public event MoveAllCars OnMoveCars;
-   
+
+   public int Counter { get; set; }
+
    //public Action OnMoveCars;
 
    public bool MoveCars { get; set; }
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
    public void StartNextSequence()
    {
       MoveCars = false;
+      Counter++;
+      UIManager.Instance.UpdateCount(Counter);
       CarManager.Instance.AddCarAsPreviousCar();
       CarManager.Instance.ResetCars();
       WaypointManager.Instance.IncreaseWaypointIndex();

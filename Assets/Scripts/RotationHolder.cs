@@ -30,10 +30,7 @@ public class RotationHolder : MonoBehaviour
 
     private void OnDisable()
     {
-        if (movement.IsActiveVehicle)
-            _gameManager.OnMoveCars -= AddRotationsToList;
-        else
-            _gameManager.OnMoveCars -= RotateVehicleByList;
+        UnsubscribeMethods();
     }
 
     private void AddRotationsToList()
