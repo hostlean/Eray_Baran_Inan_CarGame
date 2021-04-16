@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -22,7 +19,11 @@ public class GameManager : MonoBehaviour
 
    #endregion
 
-   public Action OnMoveCars;
+   public delegate void MoveAllCars();
+
+   public event MoveAllCars OnMoveCars;
+   
+   //public Action OnMoveCars;
 
    public bool MoveCars { get; set; }
    

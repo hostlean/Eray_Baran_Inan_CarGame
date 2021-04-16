@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -27,9 +22,14 @@ public class InputManager : MonoBehaviour
 
    #endregion
 
-   public Action<Vector2, float> OnStartTouch;
-   public Action<Vector2, float> OnEndTouch;
+   public delegate void TouchStart(Vector2 inputValue, float time);
 
+   public event TouchStart OnStartTouch;
+   
+   public delegate void TouchEnd(Vector2 inputValue, float time);
+
+   public event TouchEnd OnEndTouch;
+   
    private InputMaps _inputMaps;
 
    private void Awake()

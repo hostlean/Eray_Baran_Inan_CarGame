@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3499260075419177610}
   m_Layer: 0
   m_Name: Single House
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

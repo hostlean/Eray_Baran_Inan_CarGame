@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +11,8 @@ public class RotationHolder : MonoBehaviour
 
     private GameManager _gameManager;
 
+    public bool OnTarget { get; set; }
+
     private void Awake()
     {
         _gameManager = GameManager.Instance;
@@ -20,6 +20,7 @@ public class RotationHolder : MonoBehaviour
 
     private void OnEnable()
     {
+        OnTarget = false;
         _listIndex = 0;
         if (movement.IsActiveVehicle)
             _gameManager.OnMoveCars += AddRotationsToList;
@@ -43,15 +44,8 @@ public class RotationHolder : MonoBehaviour
 
     private void RotateVehicleByList()
     {
-        if (_listIndex < rotations.Count)
-        {
-            transform.rotation = rotations[_listIndex];
-            _listIndex++;
-        }
-        else
-        {
-            CarManager.Instance.DestroyActiveCar();
-        }
+        transform.rotation = rotations[_listIndex];
+        _listIndex++;
     }
 
     public void UnsubscribeMethods()

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder( -1)]
@@ -24,11 +21,11 @@ public class WaypointManager : MonoBehaviour
     #endregion
     
     [SerializeField] private Transform[] startPoints;
-    [SerializeField] private GameObject[] endPoints;
+    [SerializeField] private MeshRenderer[] endPoints;
 
     public Transform[] StartPoints => startPoints;
 
-    public GameObject[] EndPoints => endPoints;
+    public MeshRenderer[] EndPoints => endPoints;
 
     private int _index;
 
@@ -53,9 +50,5 @@ public class WaypointManager : MonoBehaviour
             SceneLoader.Instance.LoadLevelSelection();
         _index %= startPoints.Length;
     }
-    
-    
-    
-
 
 }

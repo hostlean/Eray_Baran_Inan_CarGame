@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,16 +24,27 @@ public class CarManager : MonoBehaviour
     
     [SerializeField] private float carMoveSpeed;
     [SerializeField] private float carTurnSpeed;
-    [SerializeField] private GameObject carPrefab;
     [SerializeField] private int previousCarCount;
+    [SerializeField] private bool showOldTrails;
+    [SerializeField] private bool showOldTargets;
+    [SerializeField] private bool waitForOldCars;
+    [SerializeField] private RotationHolder carPrefab;
 
-    [SerializeField] private List<GameObject> cars = new List<GameObject>();
+    [SerializeField] private List<RotationHolder> cars = new List<RotationHolder>();
 
+    private RotationHolder _activeCar;
     public float CarMoveSpeed => carMoveSpeed;
 
     public float CarTurnSpeed => carTurnSpeed;
 
-    private GameObject _activeCar;
+    public bool ShowPreviousCarTrails => showOldTrails;
+
+    public bool ShowPreviousCarTargets => showOldTargets;
+
+    public bool WaitForPreviousCars => waitForOldCars;
+
+    public RotationHolder ActiveCar => _activeCar;
+
 
     private void Awake()
     {
@@ -49,15 +58,14 @@ public class CarManager : MonoBehaviour
 
     public void CreateNewCar()
     {
-        GameObject car = Instantiate(carPrefab, transform.position, Quaternion.identity, transform);
+        RotationHolder car = Instantiate(carPrefab, transform.position, Quaternion.identity, transform);
         _activeCar = car;
     }
 
     public void DestroyActiveCar()
     {
-        RotationHolder rh =  _activeCar.GetComponent<RotationHolder>();
-        rh.UnsubscribeMethods();
-        _activeCar.SetActive(false);
+        _activeCar.UnsubscribeMethods();
+        _activeCar.gameObject.SetActive(false);
         Destroy(_activeCar);
     }
 
@@ -65,12 +73,13 @@ public class CarManager : MonoBehaviour
     {
         cars.Add(_activeCar);
     }
+    
 
     public void ResetCars()
     {
         foreach (var car in cars)
         {
-            car.SetActive(false);
+            car.gameObject.SetActive(false);
         }
         ActivatePreviousCars();
     }
@@ -79,16 +88,26 @@ public class CarManager : MonoBehaviour
     {
         if (cars.Count > 0)
         {
-            if (previousCarCount > 7)
-                previousCarCount = 7;
+            previousCarCount = previousCarCount > 7 ? 7 : previousCarCount;
+            previousCarCount = previousCarCount < 0 ? 0 : previousCarCount;
             var difference = cars.Count - previousCarCount;
             var startIndex = difference > 0 ? difference : 0;
 
             for (int i = startIndex; i < cars.Count; i++)
             {
-                cars[i].SetActive(true);
+                cars[i].gameObject.SetActive(true);
             }
         }
-      
+    }
+
+    public bool CheckIfAllCarsAtTarget()
+    {
+        foreach (var car in cars)
+        {
+            if (!car.OnTarget && car.gameObject.activeSelf)
+                return false;
+        }
+
+        return true;
     }
 }
